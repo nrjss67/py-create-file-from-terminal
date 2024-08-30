@@ -9,8 +9,8 @@ def content_writer(path: str) -> None:
         line_counter = 1
         while "stop" not in content_line:
             new_file.write(content_line + "\n")
-            content_line = (f'{str(line_counter)} '
-                            f'{input("Enter content line: ")}')
+            content_line = (f"{str(line_counter)} "
+                            f"{input("Enter content line: ")}")
             line_counter += 1
 
 
