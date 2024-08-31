@@ -4,7 +4,7 @@ import datetime
 
 
 def content_writer(path: str) -> None:
-    with open(path, "w") as new_file:
+    with open(path, "a") as new_file:
         content_line = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         line_counter = 1
         while "stop" not in content_line:
