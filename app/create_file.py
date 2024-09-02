@@ -28,8 +28,10 @@ def create_app() -> None:
 
         joined_path = os.path.join(*part_of_dir)
         os.makedirs(joined_path, exist_ok=True)
+        part_of_dir.append(file_name)
+        path_with_filename = os.path.join(*part_of_dir)
 
-        content_writer(joined_path + "/" + file_name)
+        content_writer(path_with_filename)
         return
 
     flag = command[1]
