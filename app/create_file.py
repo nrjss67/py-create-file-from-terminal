@@ -7,7 +7,10 @@ def content_writer(path: str) -> None:
     with open(path, "a") as new_file:
         content_line = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         line_counter = 1
-        while "stop" not in content_line:
+        while True:
+            if "stop" in content_line:
+                new_file.write("\n")
+                break
             new_file.write(content_line + "\n")
             content_line = (f"{str(line_counter)} "
                             f"{input('Enter content line: ')}") # noqa
