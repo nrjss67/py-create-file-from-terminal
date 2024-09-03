@@ -4,17 +4,20 @@ import datetime
 
 
 def content_writer(path: str) -> None:
+    content_for_file = ""
+    content_line = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    line_counter = 1
+    while True:
+        if "stop" in content_line:
+            content_for_file += "\n"
+            break
+        content_for_file += content_line + "\n"
+        content_line = (f"{str(line_counter)} "
+                        f"{input('Enter content line: ')}")  # noqa
+        line_counter += 1
+
     with open(path, "a") as new_file:
-        content_line = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        line_counter = 1
-        while True:
-            if "stop" in content_line:
-                new_file.write("\n")
-                break
-            new_file.write(content_line + "\n")
-            content_line = (f"{str(line_counter)} "
-                            f"{input('Enter content line: ')}") # noqa
-            line_counter += 1
+        new_file.write(content_for_file)
 
 
 def create_app() -> None:
@@ -32,9 +35,9 @@ def create_app() -> None:
         joined_path = os.path.join(*part_of_dir)
         os.makedirs(joined_path, exist_ok=True)
         part_of_dir.append(file_name)
-        path_with_filename = os.path.join(*part_of_dir)
+        path_with_file_name = os.path.join(*part_of_dir)
 
-        content_writer(path_with_filename)
+        content_writer(path_with_file_name)
         return
 
     flag = command[1]
